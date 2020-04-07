@@ -1,0 +1,30 @@
+.post {
+  &__title,
+  &__author {
+    text-align: center;
+  }
+
+  &__title {
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__author {
+    margin-top: 10px;
+  }
+
+  &__author-link {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__text {
+    margin-top: 30px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

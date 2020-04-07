@@ -1,0 +1,18 @@
+@mixin flex-container($justify-content: flex-start, $align-items: stretch, $flex-wrap: wrap, $flex-direction: row, $isFlexCenter: false) {
+  @if $isFlexCenter {
+    $justify-content: center;
+    $align-items: center;
+  }
+
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-wrap: $flex-wrap;
+}
+
+@mixin media-tablet() {
+  @media screen and (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}

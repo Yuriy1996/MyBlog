@@ -1,0 +1,8 @@
+.footer {
+  padding-bottom: 20px;
+
+  &__copyright {
+    font-size: var(--font-size-copyright);
+    text-align: center;
+  }
+}

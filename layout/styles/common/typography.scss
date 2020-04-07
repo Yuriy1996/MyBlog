@@ -1,0 +1,35 @@
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-main);
+  color: var(--color-main);
+  line-height: normal;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: var(--color-hover);
+  }
+}
+
+.title {
+  font-size: var(--font-size-title);
+  font-weight: 800;
+}
+
+.subtitle {
+  font-weight: 300;
+}
+
+.subtext {
+  font-size: var(--font-size-subtext);
+  color: var(--color-subtext);
+  font-style: italic;
+
+  &--color-darken {
+    color: var(--color-subtext-darken);
+  }
+}

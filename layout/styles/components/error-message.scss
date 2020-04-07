@@ -1,0 +1,11 @@
+.error-message {
+  display: none;
+
+  &--active {
+    display: block;
+  }
+
+  &__text {
+    color: var(--color-error);
+  }
+}

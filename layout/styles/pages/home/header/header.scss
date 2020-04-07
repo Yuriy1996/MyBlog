@@ -1,0 +1,13 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  color: var(--color-header);
+  font-weight: 800;
+
+  .wrapper {
+    @include flex-container($justify-content: space-between, $align-items: center);
+  }
+}

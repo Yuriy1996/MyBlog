@@ -1,0 +1,71 @@
+//color
+$color-black: #333333;
+$color-gray: #777777;
+$color-white: #ffffff;
+$color-blue: #0085A1;
+$color-red: red;
+
+:root {
+  --color-hover: #{$color-blue};
+  --color-main: #{$color-black};
+  --color-subtext: #{$color-gray};
+  --color-subtext-darken: #{darken($color-gray, 20%)};
+  --color-error: #{$color-red};
+}
+
+.header {
+  --color-hover: #{darken($color-white, 20%)};
+  --color-header: #{$color-white};
+}
+
+.hero-block {
+  --color-hero-block: #{$color-white};
+}
+
+//background-color
+.blog__btn {
+  --background-color: #{lighten($color-gray, 20%)};
+  --background-color-hover: #{$color-blue};
+}
+
+.loader {
+  --background-color: #{rgba($color-white, 0.8)};
+}
+
+//font-size
+:root {
+  --font-size-hero-title: 80px;
+  --font-size-title: 25px;
+  --font-size-main: 20px;
+  --font-size-subtext: 18px;
+  --font-size-btn: 20px;
+}
+
+.post {
+  --font-size-title: 40px;
+}
+
+.header {
+  --font-size-header-logo: 18px;
+  --font-size-header-nav: 14px;
+}
+
+.hero-block {
+  --font-size-title: 80px;
+}
+
+.comments-block {
+  --font-size-title: 20px;
+}
+
+.footer {
+  --font-size-copyright: 14px;
+}
+
+//font-family
+:root {
+  --font-family: 'Open Sans', sans-serif;
+}
+
+//breakpoint
+$breakpoint-tablet: 940px

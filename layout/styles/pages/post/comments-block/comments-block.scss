@@ -1,0 +1,17 @@
+.comments-block {
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  &__item {
+    padding: 10px 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid gray;
+    }
+  }
+
+  &__item-title {
+    margin-bottom: 10px;
+  }
+}

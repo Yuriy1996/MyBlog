@@ -1,0 +1,34 @@
+.hero-block {
+  background-image: url("../images/home-bg.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: var(--color-hero-block);
+
+  .wrapper {
+    height: 100%;
+    @include flex-container($flex-direction: column, $isFlexCenter: true);
+  }
+
+  &__title {
+    margin: 0;
+    padding-bottom: 30px;
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 200px;
+      background-color: var(--color-hero-block);
+      height: 5px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
