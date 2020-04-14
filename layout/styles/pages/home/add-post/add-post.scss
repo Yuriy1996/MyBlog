@@ -1,0 +1,98 @@
+.add-post {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--background-color-container);
+
+  &--open {
+    display: block;
+  }
+
+  .wrapper {
+    @include flex-container($isFlexCenter: true);
+    height: 100%;
+  }
+
+  &__form {
+    padding: 50px;
+    background-color: var(--background-color-form);
+    position: relative;
+  }
+
+  &__closed {
+    position: absolute;
+    background-color: var(--background-color-closed);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%) rotate(45deg);
+    cursor: pointer;
+
+    &::after,
+    &::before {
+      content: '';
+      width: 25px;
+      height: 3px;
+      background-color: var(--background-color-line-closed);
+      border-radius: 5px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+
+    &::after {
+      transform: translate(-50%, -50%);
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+
+  &__row {
+    @include flex-container($align-items: center, $flex-wrap: nowrap);
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  &__row * {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    width: 100px;
+    margin-right: 10px;
+  }
+
+  &__input {
+    width: 300px;
+    height: 30px;
+    font-size: var(--font-size-main);
+    font-family: inherit;
+  }
+
+  &__symbol-counter {
+    margin-left: 10px;
+  }
+
+  &__text {
+    height: 100px;
+  }
+
+  &__submit {
+    width: 100%;
+    margin-top: 20px;
+    background: var(--background-btn);
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

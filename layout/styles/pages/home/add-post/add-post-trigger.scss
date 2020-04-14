@@ -1,0 +1,50 @@
+.add-post-trigger {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: var(--background-gradient);
+  cursor: pointer;
+
+  &--hidden {
+    display: none;
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    width: 35px;
+    height: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--background-color-line);
+    border-radius: 5px;
+  }
+
+  &::after {
+    transform: translate(-50%, -50%);
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  &__text-help {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-100%);
+    text-align: right;
+    width: 150px;
+    color: var(--color-text-help);
+    user-select: none;
+  }
+
+  &:hover &__text-help {
+    display: inline-block;
+  }
+}

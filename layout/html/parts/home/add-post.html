@@ -1,0 +1,29 @@
+<div class="add-post">
+	<div class="wrapper">
+		<form action="#" class="add-post__form">
+			<div class="add-post__closed"></div>
+			<div class="add-post__row">
+				<label for="post-title" class="add-post__label">Title post</label>
+				<input id="post-title" name="title" type="text" class="add-post__title add-post__input" data-max-symbol="20">
+				<span class="add-post__symbol-counter"></span>
+			</div>
+
+			<div class="add-post__row">
+				<label for="post-userId" class="add-post__label">User ID</label>
+				<input id="post-userId" name="userId" type="text" class="add-post__userId add-post__input" data-type="number">
+			</div>
+
+			<div class="add-post__row">
+				<label for="post-text" class="add-post__label">Post text</label>
+				<textarea id="post-text" name="body" class="add-post__text add-post__input" data-max-symbol="50"></textarea>
+				<span class="add-post__symbol-counter"></span>
+			</div>
+
+			<button class="btn add-post__submit">Add post</button>
+		</form>
+	</div>
+</div>
+
+<div class="add-post-trigger">
+	<p class="add-post-trigger__text-help">Add new post</p>
+</div>

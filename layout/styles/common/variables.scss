@@ -4,6 +4,7 @@ $color-gray: #777777;
 $color-white: #ffffff;
 $color-blue: #0085A1;
 $color-red: red;
+$color-green: #008000;
 
 :root {
   --color-hover: #{$color-blue};
@@ -22,6 +23,10 @@ $color-red: red;
   --color-hero-block: #{$color-white};
 }
 
+.add-post-trigger {
+  --color-text-help: #{$color-blue};
+}
+
 //background-color
 .blog__btn {
   --background-color: #{lighten($color-gray, 20%)};
@@ -30,6 +35,19 @@ $color-red: red;
 
 .loader {
   --background-color: #{rgba($color-white, 0.8)};
+}
+
+.add-post {
+  --background-color-container: #{rgba($color-gray, 0.8)};
+  --background-btn: linear-gradient(to bottom right, #{$color-blue}, #{$color-green});
+  --background-color-line-closed: #{$color-white};
+  --background-color-closed: #{$color-red};
+  --background-color-form: #{$color-white};
+}
+
+.add-post-trigger {
+  --background-gradient: linear-gradient(to bottom right, #{$color-blue}, #{$color-green});
+  --background-color-line: #{$color-white};
 }
 
 //font-size

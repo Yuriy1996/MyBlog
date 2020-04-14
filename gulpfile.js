@@ -13,109 +13,128 @@ const babel = require('gulp-babel');
 const browserSync = require('browser-sync');
 
 let pathsList = {
-    root: {
-        src: './layout/',
-        dist: './dist/',
-    },
-    parts: {
-        styles: 'styles/',
-        scripts: 'scripts/',
-        html: 'html/',
-        images: 'images/'
-    }
+	root: {
+		src: './layout/',
+		dist: './dist/',
+	},
+	parts: {
+		styles: 'styles/',
+		scripts: 'scripts/',
+		html: 'html/',
+		images: 'images/'
+	}
 };
 
 const indexFiles = {
-    html: 'home.html',
-    styles: 'styles.scss',
-    scripts: 'main.js'
+	html: 'home.html',
+	styles: 'styles.scss',
+	scripts: 'main.js'
 };
 
 gulp.task('browserSync', function () {
-    browserSync({
-        server: {
-            baseDir: (pathsList.root.dist)
-        },
-        port: 8080,
-        open: true,
-        notify: false,
-        startPath: pathsList.parts.html + indexFiles.html
-    });
+	browserSync({
+		server: {
+			baseDir: (pathsList.root.dist)
+		},
+		port: 8080,
+		open: true,
+		notify: false,
+		startPath: pathsList.parts.html + indexFiles.html
+	});
 });
 
 gulp.task('html:build', () => {
-    return gulp.src(pathsList.root.src + pathsList.parts.html + '*.html')
-        .pipe(plumber())
-        .pipe(fileinclude({
-            prefix: '@@',
-            basepath: '@file'
-        }))
-        .pipe(plumber.stop())
-        .pipe(gulp.dest(pathsList.root.dist + pathsList.parts.html))
-        .pipe(browserSync.reload({stream: true}));
+	return gulp.src(pathsList.root.src + pathsList.parts.html + '*.html')
+		.pipe(plumber())
+		.pipe(fileinclude({
+			prefix: '@@',
+			basepath: '@file'
+		}))
+		.pipe(plumber.stop())
+		.pipe(gulp.dest(pathsList.root.dist + pathsList.parts.html))
+		.pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('styles:build', () => {
-    return gulp.src(pathsList.root.src + pathsList.parts.styles + '*.scss')
-        .pipe(plumber())
-        .pipe(saas().on('error', saas.logError))
-        .pipe(autoprefixer({
-            overrideBrowserslist: ['last 2 versions'],
-            cascade: false
-        }))
-        .pipe(cssMin())
-        .pipe(plumber.stop())
-        .pipe(gulp.dest(pathsList.root.dist + pathsList.parts.styles))
-        .pipe(browserSync.stream());
+	return gulp.src(pathsList.root.src + pathsList.parts.styles + '*.scss')
+		.pipe(plumber())
+		.pipe(saas().on('error', saas.logError))
+		.pipe(autoprefixer({
+			overrideBrowserslist: ['last 2 versions'],
+			cascade: false
+		}))
+		.pipe(cssMin())
+		.pipe(plumber.stop())
+		.pipe(gulp.dest(pathsList.root.dist + pathsList.parts.styles))
+		.pipe(browserSync.stream());
 });
 
 gulp.task('scripts:build', () => {
-    return gulp.src(pathsList.root.src + pathsList.parts.scripts + '*.js')
-        .pipe(plumber())
-        .pipe(browserify({
-            insertGlobals: true,
-            debug: true
-        }))
-        .pipe(babel({
-            presets: ['env']
-        }))
-        .pipe(concat('script.js'))
-        .pipe(uglify({
-            toplevel: true,
-        }))
-        .pipe(plumber.stop())
-        .pipe(gulp.dest(pathsList.root.dist + pathsList.parts.scripts))
-        .pipe(browserSync.stream());
+	return gulp.src(pathsList.root.src + pathsList.parts.scripts + '*.js')
+		.pipe(plumber())
+		.pipe(browserify({
+			insertGlobals: true,
+			debug: true
+		}))
+		.pipe(babel({
+			presets: ['env']
+		}))
+		.pipe(concat('script.js'))
+		.pipe(plumber.stop())
+		.pipe(gulp.dest(pathsList.root.dist + pathsList.parts.scripts))
+		.pipe(browserSync.stream());
+});
+
+gulp.task('scripts-minifies:build', () => {
+	return gulp.src(pathsList.root.src + pathsList.parts.scripts + '*.js')
+		.pipe(plumber())
+		.pipe(browserify({
+			insertGlobals: true,
+			debug: true
+		}))
+		.pipe(babel({
+			presets: ['env']
+		}))
+		.pipe(concat('script.js'))
+		.pipe(uglify({
+			toplevel: true,
+		}))
+		.pipe(plumber.stop())
+		.pipe(gulp.dest(pathsList.root.dist + pathsList.parts.scripts))
+		.pipe(browserSync.stream());
 });
 
 gulp.task('images:build', () => {
-    return gulp.src(pathsList.root.src + pathsList.parts.images + '**/*')
-        .pipe(plumber())
-        .pipe(changed(pathsList.root.dist + pathsList.parts.images))
-        .pipe(image())
-        .pipe(plumber.stop())
-        .pipe(gulp.dest(pathsList.root.dist + pathsList.parts.images))
-        .pipe(browserSync.stream());
+	return gulp.src(pathsList.root.src + pathsList.parts.images + '**/*')
+		.pipe(plumber())
+		.pipe(changed(pathsList.root.dist + pathsList.parts.images))
+		.pipe(image())
+		.pipe(plumber.stop())
+		.pipe(gulp.dest(pathsList.root.dist + pathsList.parts.images))
+		.pipe(browserSync.stream());
 });
 
-gulp.task('layout:build',  gulp.parallel('html:build', 'styles:build', 'scripts:build', 'images:build'));
+gulp.task('layout:build', gulp.parallel('html:build', 'styles:build', 'scripts:build', 'images:build'));
+
+//Compiles and minifies for production
+gulp.task('build', gulp.parallel('html:build', 'styles:build', 'scripts-minifies:build', 'images:build'));
 
 // Watchers
 
 gulp.task('html:watch', () => {
-    gulp.watch(pathsList.root.src + pathsList.parts.html + '**', gulp.series('html:build'))
+	gulp.watch(pathsList.root.src + pathsList.parts.html + '**', gulp.series('html:build'))
 });
 
 gulp.task('styles:watch', () => {
-    gulp.watch(pathsList.root.src + pathsList.parts.styles + '**', gulp.series('styles:build'));
+	gulp.watch(pathsList.root.src + pathsList.parts.styles + '**', gulp.series('styles:build'));
 });
 
 gulp.task('scripts:watch', () => {
-    gulp.watch(pathsList.root.src + pathsList.parts.scripts + '**', gulp.series('scripts:build'));
+	gulp.watch(pathsList.root.src + pathsList.parts.scripts + '**', gulp.series('scripts:build'));
 });
 
 gulp.task('images:watch', () => {
-    gulp.watch(pathsList.root.src + pathsList.parts.images + '**', gulp.series('images:build'));
+	gulp.watch(pathsList.root.src + pathsList.parts.images + '**', gulp.series('images:build'));
 });
 
 gulp.task('watch', gulp.parallel('html:watch', 'styles:watch', 'scripts:watch', 'images:watch', 'browserSync'));
